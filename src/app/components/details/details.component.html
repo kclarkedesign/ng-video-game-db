@@ -1,7 +1,6 @@
-<div class="details">
+<div class="details" *ngIf="game">
   <div class="game-banner">
     <img
-      *ngIf="game.background_image"
       src="{{ game.background_image }}"
       alt="background image"
       class="game-banner-img"
@@ -32,13 +31,18 @@
           >
           </mwl-gauge>
           <a
+            *ngIf="game.metacritic_url?.length"
             class="game-gauge-label"
             target="_blank"
             href="{{ game.metacritic_url }}"
             >Metacritic
           </a>
+          <span class="game-gauge-label" *ngIf="!game.metacritic_url?.length">
+            No Metacritic link
+          </span>
         </div>
       </div>
+      <app-game-tabs [game]="game"></app-game-tabs>
     </div>
   </div>
 </div>
